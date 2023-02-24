@@ -23,7 +23,9 @@ from tqdm import tqdm
 
 
 
-
+# Makes a Dx1 vector given x
+def my_vector(x):
+    return np.asarray(x).reshape(-1, 1)
 
 
 
