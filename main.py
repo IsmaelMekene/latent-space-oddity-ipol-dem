@@ -104,7 +104,7 @@ plt.title('Latent space')
 
 
 
-affinity = np.load('/content/affinity2.npy')
+affinity = np.load(os.path.join(ROOT, 'affinity2.npy'))
 
 
 def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
