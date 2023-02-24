@@ -44,14 +44,14 @@ from tqdm import tqdm
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
-MU_Z_data = np.load(os.path.join(ROOT, 'MU_Z_data1.npy'))
+MU_Z_data = np.load(os.path.join(ROOT, 'MU_Z_data2.npy'))
 plt.figure()
 plt.scatter(MU_Z_data[:, 0], MU_Z_data[:, 1], c='k', s=15)
 plt.title('Latent space')
 
 
 
-affinity = np.load('/content/affinity1.npy')
+affinity = np.load('/content/affinity2.npy')
 
 
 def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
@@ -95,7 +95,7 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
         
     
     
-sigma = 2.2
+sigma = 1.6
 affinity_kernel = np.exp (- affinity / sigma**2)
 predicted_labels_riemannian = apply_kmedioids (MU_Z_data, metric = 'Riemann', affinity = affinity_kernel)
 plt.title ('Riemannian Kmediods')
