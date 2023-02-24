@@ -1,12 +1,14 @@
 import os
 import sys 
+import os
+import sys 
 import numpy as np
 import sklearn_extra
 from sklearn_extra.cluster import KMedoids
 
 import torch
 import torch.nn as nn
-from python.core import utils, generative_models, manifolds, geodesics, 
+#from python.core import utils, generative_models, manifolds, geodesics, 
 import matplotlib.pyplot as plt
 import gc
 from sklearn.cluster import KMeans
@@ -22,11 +24,9 @@ from tqdm import tqdm
 
 
 
-
 # Makes a Dx1 vector given x
 def my_vector(x):
     return np.asarray(x).reshape(-1, 1)
-
 
 
 # Synthetic datasets
@@ -77,7 +77,6 @@ def generate_data(params=None):
 
 
 
-
 #params = {'N': 200, 'data_type': 3, 'sigma': 0.1, 'extra_dims': 2, 'r':1}
 #data, labels = utils.generate_data(params)
 #data, labels = generate_data(params)
@@ -98,18 +97,25 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
 MU_Z_data = np.load(os.path.join(ROOT, 'MU_Z_data2.npy'))
-plt.figure()
-plt.scatter(MU_Z_data[:, 0], MU_Z_data[:, 1], c='k', s=15)
-plt.title('Latent space')
-
-
 
 affinity = np.load(os.path.join(ROOT, 'affinity2.npy'))
 
 
-def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
+
+
+def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None ):
     
-    if (metric == 'euclidean'):
+    if (metric == 'latent'):
+
+      fig0 = plt.figure()
+      plt.scatter(data[:,0], data[:,1], c='k', s=15)
+      plt.legend()
+      plt.title ('Latent Space')
+      fig0.savefig('Latent_Space.png', dpi=fig0.dpi)
+
+      label = -1
+
+    elif (metric == 'euclidean'):
         kmedio =  KMedoids(n_clusters=2)
         kmedio.fit(data)
 
@@ -117,7 +123,9 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
 # labels 
         label = kmedio.labels_
 
-# plot
+# plot  
+        #fig1 = plt.figure(figsize=(6, 6))
+        fig1 = plt.figure()
         c = ['b','y']
         for l in np.unique(label):
             plt.scatter(data[label == l][:,0], data[label == l][:,1], label = str(l))
@@ -125,16 +133,22 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
         #plt.scatter(kmedio.cluster_centers_[:,0], kmedio.cluster_centers_[:,1], marker = '*', label = 'centroids' , s = 200)
 
         plt.legend()
+        plt.title ('Euclidean Kmediods')
+        fig1.savefig('Euclidean_Kmediods.png', dpi=fig1.dpi)
         
     else : 
+        sigma = 1.6
+        affinity_kernel = np.exp (- affinity / sigma**2)
         kmedio_rienman =  KMedoids(n_clusters=2,max_iter = 100000, metric = 'precomputed' )
-        kmedio_rienman.fit(affinity)
+        kmedio_rienman.fit(affinity_kernel)
 
 
 # labels 
         label = kmedio_rienman.labels_
 
 # plot
+        #fig2 = plt.figure(figsize=(6, 6))
+        fig2 = plt.figure()
         c = ['b','y']
         for l in np.unique(label):
             plt.scatter(data[label == l][:,0], data[label == l][:,1], label = str(l))
@@ -144,31 +158,28 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
         #plt.scatter(data[medioid_indices,0], data[medioid_indices,1], marker = '*', label = 'centroids' , s = 200)
 
         plt.legend()
+        plt.title ('Riemannian Kmediods')
+        fig2.savefig('Riemannian_Kmediods.png', dpi=fig2.dpi)
+
     return label 
-        
+
+
+
+def main(data,affinity,sigma):
+
+  sig = sigma
+  for met in ['latent','euclidean','Riemann']:
+
+    apply_kmedioids (data, metric = met, affinity = affinity,sigma = sig)
+  return 
+
+
+
+if __name__ == "__main__":
+    main(MU_Z_data,affinity,1.6)
+  
+
     
-    
-sigma = 1.6
-affinity_kernel = np.exp (- affinity / sigma**2)
-predicted_labels_riemannian = apply_kmedioids (MU_Z_data, metric = 'Riemann', affinity = affinity_kernel)
-plt.title ('Riemannian Kmediods')
-
-
-predicted_labels_euclidean = apply_kmedioids (MU_Z_data, metric = 'euclidean')
-plt.title ('Euclidean Kmediods')
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
