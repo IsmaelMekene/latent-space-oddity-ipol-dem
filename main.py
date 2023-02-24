@@ -69,7 +69,7 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
         for l in np.unique(label):
             plt.scatter(data[label == l][:,0], data[label == l][:,1], label = str(l))
 
-        plt.scatter(kmedio.cluster_centers_[:,0], kmedio.cluster_centers_[:,1], marker = '*', label = 'centroids' , s = 200)
+        #plt.scatter(kmedio.cluster_centers_[:,0], kmedio.cluster_centers_[:,1], marker = '*', label = 'centroids' , s = 200)
 
         plt.legend()
         
@@ -88,7 +88,7 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None ):
 
         medioid_indices = kmedio_rienman.medoid_indices_
 
-        plt.scatter(data[medioid_indices,0], data[medioid_indices,1], marker = '*', label = 'centroids' , s = 200)
+        #plt.scatter(data[medioid_indices,0], data[medioid_indices,1], marker = '*', label = 'centroids' , s = 200)
 
         plt.legend()
     return label 
