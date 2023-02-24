@@ -3,3 +3,4 @@ matplotlib
 torch
 scikit-learn
 scipy
+scikit-learn-extra
