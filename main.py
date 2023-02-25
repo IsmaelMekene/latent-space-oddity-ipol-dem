@@ -111,7 +111,9 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
       plt.scatter(data[:,0], data[:,1], c='k', s=15)
       #plt.legend()
       plt.title ('Latent Space')
-      fig0.savefig(os.path.join(ROOT, 'Latent_Space.png'), dpi=fig0.dpi)
+      #fig0.savefig(os.path.join(ROOT, 'Latent_Space.png'), dpi=fig0.dpi)
+      fig0.savefig('/workdir/bin/Latent_Space.png', format='png', dpi=fig0.dpi)
+        
 
       label = -1
 
@@ -134,7 +136,8 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
 
         plt.legend()
         plt.title ('Euclidean Kmediods')
-        fig1.savefig(os.path.join(ROOT, 'Euclidean_Kmediods.png'), dpi=fig1.dpi)
+        #fig1.savefig(os.path.join(ROOT, 'Euclidean_Kmediods.png'), dpi=fig1.dpi)
+        fig1.savefig('/workdir/bin/Euclidean_Kmediods.png', format='png', dpi=fig1.dpi)
         
         
     else : 
@@ -160,7 +163,8 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
 
         plt.legend()
         plt.title ('Riemannian Kmediods')
-        fig2.savefig(os.path.join(ROOT, 'Riemannian_Kmediods.png'), dpi=fig2.dpi)
+        #fig2.savefig(os.path.join(ROOT, 'Riemannian_Kmediods.png'), dpi=fig2.dpi)
+        fig2.savefig('/workdir/bin/Riemannian_Kmediods.png', format='png', dpi=fig2.dpi)
 
     return label 
 
