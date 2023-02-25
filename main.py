@@ -171,6 +171,8 @@ def main(data,affinity,sigma):
   for met in ['latent','euclidean','Riemann']:
 
     apply_kmedioids (data, metric = met, affinity = affinity,sigma = sig)
+   
+  print("Done!")
   return 
 
 
