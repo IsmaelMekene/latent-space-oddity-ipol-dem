@@ -186,8 +186,7 @@ def main(data,affinity,sigma):
 
     apply_kmedioids (data, metric = met, affinity = affinity,sigma = sig)
    
-  print("Done!")
-  print(os.path.join(ROOT, 'Riemannian_Kmediods.png'))
+  print("Thank you for using our Demo!")
   return 
 
 
