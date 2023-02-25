@@ -147,7 +147,7 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
         iio.write('Euclidean_Kmediods.png', u)
 
     else : 
-        sigma = 1.6
+        sigma = sigma
         affinity_kernel = np.exp (- affinity / sigma**2)
         kmedio_rienman =  KMedoids(n_clusters=2,max_iter = 100000, metric = 'precomputed' )
         kmedio_rienman.fit(affinity_kernel)
