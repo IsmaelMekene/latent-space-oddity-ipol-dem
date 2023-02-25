@@ -1,3 +1,4 @@
+import iio
 import os
 import sys 
 import os
@@ -114,7 +115,9 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
       #fig0.savefig(os.path.join(ROOT, 'Latent_Space.png'), dpi=fig0.dpi)
     
       #fig0.savefig('/workdir/bin/Latent_Space.png', format='png', dpi=fig0.dpi)
-      fig0.savefig('Latent_Space.png', format='png', dpi=fig0.dpi)  
+      fig0.savefig('Latent_Space.png', format='png', dpi=fig0.dpi)    
+      u = iio.read("Latent_Space.png")
+      iio.write('Latent_Space.png', u)
 
       label = -1
 
@@ -140,7 +143,9 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
         #fig1.savefig(os.path.join(ROOT, 'Euclidean_Kmediods.png'), dpi=fig1.dpi)
         #fig1.savefig('/workdir/bin/Euclidean_Kmediods.png', format='png', dpi=fig1.dpi)
         fig1.savefig('Euclidean_Kmediods.png', format='png', dpi=fig1.dpi)
-        
+        u = iio.read("Euclidean_Kmediods.png")
+        iio.write('Euclidean_Kmediods.png', u)
+
     else : 
         sigma = 1.6
         affinity_kernel = np.exp (- affinity / sigma**2)
@@ -168,7 +173,8 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
         
         #fig2.savefig('/workdir/bin/Riemannian_Kmediods.png', format='png', dpi=fig2.dpi)
         fig2.savefig('Riemannian_Kmediods.png', format='png', dpi=fig2.dpi)
-
+        u = iio.read("Riemannian_Kmediods.png")
+        iio.write('Riemannian_Kmediods.png', u)
     return label 
 
 
