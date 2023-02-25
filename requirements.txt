@@ -4,3 +4,4 @@ torch
 scikit-learn
 scipy
 scikit-learn-extra
+iio==0.0.3
