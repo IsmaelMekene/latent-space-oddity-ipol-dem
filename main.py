@@ -109,7 +109,7 @@ def apply_kmedioids (data, metric = 'euclidean',affinity = None , sigma = None )
 
       fig0 = plt.figure()
       plt.scatter(data[:,0], data[:,1], c='k', s=15)
-      plt.legend()
+      #plt.legend()
       plt.title ('Latent Space')
       fig0.savefig(os.path.join(ROOT, 'Latent_Space.png'), dpi=fig0.dpi)
 
