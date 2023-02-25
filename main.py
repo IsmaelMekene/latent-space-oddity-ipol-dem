@@ -193,7 +193,10 @@ def main(data,affinity,sigma):
 
 
 if __name__ == "__main__":
-    main(MU_Z_data,affinity,1.6)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sigma", type=float, required=True)
+    main(MU_Z_data,affinity,args.sigma)
   
 
     
