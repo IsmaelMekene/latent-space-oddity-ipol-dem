@@ -186,7 +186,7 @@ def main(data,affinity,sigma):
 
     apply_kmedioids (data, metric = met, affinity = affinity,sigma = sig)
    
-  print("Thank you for using our Demo!")
+  print(f"Clusterings done with sigma = {sigma}")
   return 
 
 
