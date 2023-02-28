@@ -186,7 +186,7 @@ def main(data,affinity,sigma):
 
     apply_kmedioids (data, metric = met, affinity = affinity,sigma = sig)
    
-  print("How persistent are both clusterings?")
+  print(f"How persistent are both clusterings based on sigma = {sigma}?")
   return 
 
 
