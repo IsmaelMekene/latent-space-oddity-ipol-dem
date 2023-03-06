@@ -97,9 +97,9 @@ def generate_data(params=None):
 ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
-MU_Z_data = np.load(os.path.join(ROOT, 'MU_Z_data2.npy'))
+MU_Z_data = np.load(os.path.join(ROOT, 'data/MU_Z_data2.npy'))
 
-affinity = np.load(os.path.join(ROOT, 'affinity2.npy'))
+affinity = np.load(os.path.join(ROOT, 'data/affinity2.npy'))
 
 
 
